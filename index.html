@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRYVN Health • Premium Long-Term Staffing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --primary: #0F172A;
+            --accent: #00D4FF;
+            --accent2: #00F5A0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system_ui, sans-serif;
+            background: #F8FAFC;
+            color: #0F172A;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .heading-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header {
+            font-size: 2.5rem;
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+        
+        .glass {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(15,23,42,0.08);
+        }
+        
+        .soft-shadow {
+            box-shadow: 0 10px 40px -15px rgba(15, 23, 42, 0.12);
+        }
+        
+        .premium-shadow {
+            box-shadow: 0 20px 60px -15px rgba(15, 23, 42, 0.18);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(to right, #00D4FF, #00F5A0);
+            transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        .modern-button {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modern-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px -8px rgba(0, 212, 255, 0.4);
+        }
+        
+        .modern-button:active {
+            transform: translateY(-1px);
+        }
+
+        .benefit-card {
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                        box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.15);
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+        }
+
+        .floating-element {
+            position: absolute;
+            animation: float-gentle 18s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(1.5deg); }
+        }
+
+        .premium-gradient {
+            background: linear-gradient(135deg, #0F172A 0%, #1E2937 100%);
+        }
+
+        .metric-value {
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: linear-gradient(to bottom right, #00D4FF, #00F5A0);
+            color: white;
+            border-radius: 9999px;
+            box-shadow: 0 10px 20px -5px rgba(0, 212, 255, 0.3);
+        }
+
+        .nav-active {
+            color: #00D4FF;
+            font-weight: 600;
+        }
+
+        .subtle-grid {
+            background-image: 
+                linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            opacity: 0.065;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+            transform: rotate(-7deg);
+            filter: grayscale(0.2);
+        }
+        
+        .watermark svg {
+            width: 240px;
+            height: 105px;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 30% 20%, rgba(0,212,255,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0,245,160,0.06) 0%, transparent 50%);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(15,23,42,0.08), transparent);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- WATERMARK -->
+    <div class="watermark">
+        <svg width="240" height="105" viewBox="0 0 240 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Main dynamic swoosh / path -->
+            <path d="M12 68 Q52 22 118 52 Q178 82 228 38" stroke="#0F172A" stroke-width="13" stroke-linecap="round" fill="none"/>
+            <!-- Secondary layer for depth -->
+            <path d="M18 70 Q55 28 120 54 Q175 84 222 42" stroke="#475569" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.65"/>
+            <!-- Accent highlight circle -->
+            <circle cx="58" cy="30" r="6.5" fill="#94A3B8"/>
+            <!-- Bold primary figure circle -->
+            <circle cx="218" cy="36" r="13" fill="#0F172A"/>
+            <!-- Supporting stability form -->
+            <path d="M185 50 L225 50 L205 76 Z" fill="#64748B" opacity="0.8"/>
+            <!-- DRYVN wordmark -->
+            <text x="118" y="98" font-family="Inter, system-ui, sans-serif" font-size="38" font-weight="800" fill="#0F172A" letter-spacing="-2.2" text-anchor="middle">DRYVN</text>
+        </svg>
+    </div>
+
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-2xl border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 flex items-center justify-center">
+                    <svg width="36" height="36" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 58 Q48 18 82 46 Q102 68 76 88" stroke="#0F172A" stroke-width="12" stroke-linecap="round" fill="none"/>
+                        <path d="M20 60 Q50 24 80 48" stroke="#64748B" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.55"/>
+                        <circle cx="50" cy="26" r="5.5" fill="#94A3B8"/>
+                        <circle cx="80" cy="40" r="9.5" fill="#0F172A"/>
+                        <path d="M65 52 L92 52 L78 70 Z" fill="#64748B" opacity="0.7"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-semibold text-[27px] tracking-[-1.5px] text-slate-900">DRYVN</span>
+                    <span class="font-medium text-[13px] tracking-[-0.3px] text-slate-500 block -mt-1">Health</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-x-8 text-sm">
+                <a href="#mission" class="nav-link text-slate-600 hover:text-slate-900 font-medium px-1">Mission</a>
+                <a href="#clinicians" class="nav-link text-slate-600 hover:text-slate-900 font-medium px-1">For Clinicians</a>
+                <a href="#facilities" class="nav-link text-slate-600 hover:text-slate-900 font-medium px-1">For Facilities</a>
+                <a href="#how" class="nav-link text-slate-600 hover:text-slate-900 font-medium px-1">How It Works</a>
+            </div>
+
+            <div class="flex items-center gap-x-3">
+                <a href="#join" 
+                   class="hidden sm:block px-5 py-2 text-sm font-semibold text-slate-700 hover:text-slate-900 transition-colors">
+                    Join Us
+                </a>
+                <button onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})" 
+                        class="modern-button px-6 py-2.5 bg-slate-900 text-white text-sm font-semibold rounded-3xl hover:bg-slate-800 flex items-center gap-x-2 shadow-lg">
+                    <span>Get Started</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+                
+                <!-- Mobile menu -->
+                <button class="md:hidden w-10 h-10 flex items-center justify-center text-slate-500 hover:text-slate-700" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div id="hero" class="min-h-[620px] flex items-center relative overflow-hidden pt-16 hero-bg">
+        <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_0.8px,transparent_1px)] bg-[length:4px_4px] opacity-40"></div>
+        
+        <!-- Floating accent elements -->
+        <div class="absolute inset-0 z-10 pointer-events-none" id="parallax-container">
+            <div class="floating-element" style="top: 18%; left: 8%; animation-delay: 0s;">
+                <div class="w-3.5 h-3.5 rounded-full bg-[#00D4FF] opacity-20"></div>
+            </div>
+            <div class="floating-element" style="top: 28%; right: 12%; animation-delay: -4s;">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#00F5A0] opacity-30"></div>
+            </div>
+            <div class="floating-element" style="top: 65%; left: 15%; animation-delay: -9s;">
+                <svg width="38" height="38" viewBox="0 0 120 120" fill="none">
+                    <circle cx="60" cy="60" r="18" stroke="#00D4FF" stroke-width="2.5" opacity="0.15"/>
+                    <path d="M42 60 L55 73 L78 50" stroke="#00F5A0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-20 text-center">
+            <div class="inline-flex items-center gap-x-2 px-4 py-1 rounded-3xl bg-white/80 backdrop-blur-md border border-slate-200 mb-6">
+                <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span class="text-xs font-semibold tracking-[1px] text-emerald-600">NOW BUILDING • 2026</span>
+            </div>
+            
+            <h1 class="text-[52px] md:text-[76px] leading-[0.9] font-bold tracking-[-3.2px] mb-6 text-slate-900">
+                WE ELEVATE<br>THE PEOPLE WHO<br>ELEVATE CARE.
+            </h1>
+            
+            <p class="max-w-[560px] mx-auto text-xl md:text-[22px] text-slate-600 leading-tight tracking-tight mb-9">
+                Long-term partnerships that empower clinicians to thrive and help facilities deliver consistently exceptional care.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="document.getElementById('clinicians').scrollIntoView({behavior:'smooth'})" 
+                        class="modern-button group px-9 py-4 rounded-3xl bg-gradient-to-r from-[#00D4FF] to-[#00F5A0] text-white font-semibold text-base flex items-center justify-center gap-x-3 shadow-xl">
+                    <span>Join as a Clinician</span>
+                    <i class="fa-solid fa-user-nurse group-hover:rotate-12 transition-transform"></i>
+                </button>
+                
+                <button onclick="document.getElementById('facilities').scrollIntoView({behavior:'smooth'})" 
+                        class="modern-button px-8 py-4 rounded-3xl border-2 border-slate-300 hover:border-slate-400 bg-white font-semibold text-base flex items-center justify-center gap-x-3 text-slate-700 hover:text-slate-900 transition-all">
+                    <span>Partner With Us</span>
+                </button>
+            </div>
+            
+            <div class="mt-8 flex items-center justify-center gap-x-6 text-xs text-slate-400">
+                <div class="flex items-center gap-x-1.5">
+                    <i class="fa-solid fa-check text-emerald-500"></i>
+                    <span>Clinician-first model</span>
+                </div>
+                <div class="flex items-center gap-x-1.5">
+                    <i class="fa-solid fa-check text-emerald-500"></i>
+                    <span>12+ month commitments</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MISSION -->
+    <div id="mission" class="max-w-4xl mx-auto px-6 py-20 text-center">
+        <div class="inline-block px-3.5 py-1 rounded-2xl bg-slate-100 text-xs font-semibold tracking-widest text-slate-500 mb-3">OUR NORTH STAR</div>
+        
+        <h2 class="section-header tracking-tighter mb-6">A better way to staff healthcare.</h2>
+        
+        <div class="max-w-[620px] mx-auto">
+            <p class="text-[17px] text-slate-600 leading-relaxed">
+                Dryvn Health exists because clinicians deserve to be treated with the same care they give their patients. 
+                We create long-term, stable partnerships between exceptional talent and forward-thinking facilities — 
+                built on mutual respect, genuine support, and a shared commitment to better outcomes.
+            </p>
+        </div>
+        
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            <div class="glass rounded-3xl p-5 text-left border border-slate-100">
+                <div class="text-emerald-600 mb-2"><i class="fa-solid fa-handshake fa-lg"></i></div>
+                <div class="font-semibold">True Partnership</div>
+                <div class="text-sm text-slate-500 mt-1">Not staffing. Not placement. Partnership.</div>
+            </div>
+            <div class="glass rounded-3xl p-5 text-left border border-slate-100">
+                <div class="text-emerald-600 mb-2"><i class="fa-solid fa-heart-pulse fa-lg"></i></div>
+                <div class="font-semibold">Provider First</div>
+                <div class="text-sm text-slate-500 mt-1">When clinicians thrive, everyone wins.</div>
+            </div>
+            <div class="glass rounded-3xl p-5 text-left border border-slate-100 md:col-span-1 col-span-2">
+                <div class="text-emerald-600 mb-2"><i class="fa-solid fa-chart-line fa-lg"></i></div>
+                <div class="font-semibold">Sustainable Excellence</div>
+                <div class="text-sm text-slate-500 mt-1">Models that work for people, not just profit.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- FOR CLINICIANS -->
+    <div id="clinicians" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="flex flex-col lg:flex-row gap-12 items-start">
+            <div class="lg:sticky lg:top-24 lg:w-5/12 pt-4">
+                <div class="text-xs font-mono tracking-[2px] text-emerald-600 mb-2">FOR CLINICIANS</div>
+                <h2 class="section-header tracking-tighter">Your career.<br>Your terms.<br>Your future.</h2>
+                <p class="mt-5 text-lg text-slate-600 max-w-md">We built Dryvn to treat clinicians the way they deserve — with respect, transparency, and benefits that actually improve your life.</p>
+                
+                <div class="mt-8 flex items-center gap-x-4">
+                    <div class="flex -space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-slate-200 border-2 border-white overflow-hidden"><img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-full h-full object-cover"></div>
+                        <div class="w-8 h-8 rounded-full bg-slate-200 border-2 border-white overflow-hidden"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-full h-full object-cover"></div>
+                        <div class="w-8 h-8 rounded-full bg-slate-200 border-2 border-white overflow-hidden"><img src="https://randomuser.me/api/portraits/women/65.jpg" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="text-xs text-slate-500">Join 40+ clinicians already building with us</div>
+                </div>
+            </div>
+            
+            <div class="lg:w-7/12 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <!-- Benefit 1 -->
+                <div class="benefit-card glass rounded-3xl p-7 border border-slate-100 group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calendar-check fa-xl"></i>
+                    </div>
+                    <div class="font-semibold text-xl tracking-tight mb-2">Long-term Stability</div>
+                    <div class="text-slate-600 leading-snug">12+ month commitments mean predictable schedules, deeper relationships, and the ability to truly build your life around your career — not the other way around.</div>
+                </div>
+                
+                <div class="benefit-card glass rounded-3xl p-7 border border-slate-100 group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-halved fa-xl"></i>
+                    </div>
+                    <div class="font-semibold text-xl tracking-tight mb-2">Unmatched Support</div>
+                    <div class="text-slate-600 leading-snug">Dedicated account managers who actually know you. 24/7 clinical support. A real community of peers who understand the work.</div>
+                </div>
+                
+                <div class="benefit-card glass rounded-3xl p-7 border border-slate-100 group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-graduation-cap fa-xl"></i>
+                    </div>
+                    <div class="font-semibold text-xl tracking-tight mb-2">Real Professional Growth</div>
+                    <div class="text-slate-600 leading-snug">Access to top-tier facilities, mentorship opportunities, continuing education support, and pathways to leadership roles.</div>
+                </div>
+                
+                <div class="benefit-card glass rounded-3xl p-7 border border-slate-100 group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart fa-xl"></i>
+                    </div>
+                    <div class="font-semibold text-xl tracking-tight mb-2">Work That Matters</div>
+                    <div class="text-slate-600 leading-snug">Be placed where your skills create meaningful impact. Feel valued, respected, and proud of the care you deliver every day.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Clinician Testimonials -->
+        <div class="mt-12">
+            <div class="text-xs uppercase tracking-widest text-slate-400 mb-4 px-1">WHAT CLINICIANS ARE SAYING</div>
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="glass rounded-3xl p-6 border border-slate-100">
+                    <div class="flex gap-x-3 items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full object-cover ring-2 ring-white">
+                        <div>
+                            <div class="font-semibold">Sarah Patel, RN</div>
+                            <div class="text-xs text-slate-500">ICU • Boston, MA</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">"For the first time in my career, I feel like I have a true partner who cares about my well-being as much as the patients I care for. Dryvn changed everything."</p>
+                </div>
+                <div class="glass rounded-3xl p-6 border border-slate-100">
+                    <div class="flex gap-x-3 items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full object-cover ring-2 ring-white">
+                        <div>
+                            <div class="font-semibold">Marcus Thompson, PT</div>
+                            <div class="text-xs text-slate-500">Physical Therapy • Cambridge, MA</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">"The stability is real. I’ve been with the same facility for 14 months now. I know the team, the patients, and I actually have a life outside of work."</p>
+                </div>
+                <div class="glass rounded-3xl p-6 border border-slate-100">
+                    <div class="flex gap-x-3 items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" class="w-10 h-10 rounded-full object-cover ring-2 ring-white">
+                        <div>
+                            <div class="font-semibold">Dr. Lena Rivera, PharmD</div>
+                            <div class="text-xs text-slate-500">Clinical Pharmacist • Worcester, MA</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">"Dryvn doesn’t just fill shifts. They listen, they advocate, and they’ve helped me grow in ways I didn’t expect. I’m staying for the long haul."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- FOR FACILITIES -->
+    <div id="facilities" class="max-w-7xl mx-auto px-6 py-16 bg-white">
+        <div class="flex flex-col lg:flex-row gap-12 items-start">
+            <div class="lg:w-5/12 lg:sticky lg:top-24 pt-4">
+                <div class="text-xs font-mono tracking-[2px] text-violet-600 mb-2">FOR FACILITIES &amp; PROVIDERS</div>
+                <h2 class="section-header tracking-tighter">Build teams that stay.<br>Deliver care that lasts.</h2>
+                <p class="mt-5 text-lg text-slate-600 max-w-md">Stop the revolving door. Dryvn delivers experienced, committed clinicians who become part of your culture — not just temporary coverage.</p>
+                
+                <div class="mt-8 text-sm">
+                    <div class="flex items-center gap-x-2 text-emerald-600">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span class="font-medium">Higher retention. Lower onboarding costs.</span>
+                    </div>
+                    <div class="flex items-center gap-x-2 text-emerald-600 mt-1.5">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span class="font-medium">Clinicians who know your systems, your patients, your standards.</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:w-7/12 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="benefit-card glass rounded-3xl p-7 border border-slate-100 group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-violet-100 text-violet-600 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-check fa-xl"></i>
+                    </div>
+                    <div class="font-semibold text-xl tracking-tight mb-2">Consistent, High-Caliber Talent</div>
+                    <div class="text-slate-600 leading-snug">Every clinician is rigorously vetted, credentialed, and matched to your specific needs and culture. No surprises.</div>
+                </div>
+                
+                <div class="benefit-card glass rounded-3xl p-7 border border-slate-100 group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-violet-100 text-violet-600 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-handshake fa-xl"></i>
+                    </div>
+                    <div class="font-semibold text-xl tracking-tight mb-2">Deep Integration</div>
+                    <div class="text-slate-600 leading-snug">Clinicians who stay become part of your team. They understand your workflows, your patients, and your standards of excellence.</div>
+                </div>
+                
+                <div class="benefit-card glass rounded-3xl p-7 border border-slate-100 group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-violet-100 text-violet-600 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chart-line fa-xl"></i>
+                    </div>
+                    <div class="font-semibold text-xl tracking-tight mb-2">Measurable Operational Impact</div>
+                    <div class="text-slate-600 leading-snug">Reduced turnover, lower training costs, improved continuity of care, and higher staff satisfaction across your facility.</div>
+                </div>
+                
+                <div class="benefit-card glass rounded-3xl p-7 border border-slate-100 group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-violet-100 text-violet-600 mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-headset fa-xl"></i>
+                    </div>
+                    <div class="font-semibold text-xl tracking-tight mb-2">Dedicated Partnership</div>
+                    <div class="text-slate-600 leading-snug">A single point of contact who understands your facility and fights for resolutions. Proactive communication, not reactive firefighting.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Facility Testimonials -->
+        <div class="mt-12">
+            <div class="text-xs uppercase tracking-widest text-slate-400 mb-4 px-1">WHAT FACILITY LEADERS ARE SAYING</div>
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="glass rounded-3xl p-6 border border-slate-100">
+                    <div class="flex gap-x-3 items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">CNO</div>
+                        <div>
+                            <div class="font-semibold">Dr. Rachel Kim, CNO</div>
+                            <div class="text-xs text-slate-500">Major Academic Medical Center • Boston</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">"Dryvn has been a game-changer. Our retention of contract staff went from 40% to over 85%. These clinicians feel like they belong here."</p>
+                </div>
+                <div class="glass rounded-3xl p-6 border border-slate-100">
+                    <div class="flex gap-x-3 items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">DON</div>
+                        <div>
+                            <div class="font-semibold">Michael Santos, DON</div>
+                            <div class="text-xs text-slate-500">Community Hospital Network • Worcester</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">"The quality and consistency is unmatched. Our patients notice the difference when the same faces are there day after day."</p>
+                </div>
+                <div class="glass rounded-3xl p-6 border border-slate-100">
+                    <div class="flex gap-x-3 items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">HR</div>
+                        <div>
+                            <div class="font-semibold">Aisha Patel, VP Talent</div>
+                            <div class="text-xs text-slate-500">Regional Health System • Cambridge</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">"We finally have a staffing partner who understands that retention is the real metric of success. Dryvn gets it."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- HOW IT WORKS -->
+    <div id="how" class="max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <div class="text-xs font-mono tracking-[2px] text-emerald-600 mb-2">THE DRYVN PROCESS</div>
+            <h2 class="section-header tracking-tighter">Simple. Thoughtful. Effective.</h2>
+            <p class="mt-3 text-lg text-slate-600 max-w-md mx-auto">Four clear steps to building partnerships that last.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-4 gap-6 relative">
+            <!-- Connecting line -->
+            <div class="hidden md:block absolute top-16 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+            
+            <div class="relative text-center md:text-left">
+                <div class="step-number mx-auto md:mx-0 mb-5 shadow-inner">01</div>
+                <div class="font-semibold text-xl mb-2">Discovery &amp; Alignment</div>
+                <div class="text-slate-600 text-sm leading-snug">We learn your values, culture, clinical needs, and long-term goals. No cookie-cutter approaches.</div>
+            </div>
+            
+            <div class="relative text-center md:text-left">
+                <div class="step-number mx-auto md:mx-0 mb-5 shadow-inner">02</div>
+                <div class="font-semibold text-xl mb-2">Curated Matching</div>
+                <div class="text-slate-600 text-sm leading-snug">We present only the strongest fits — clinicians whose skills, personality, and career goals align with your facility.</div>
+            </div>
+            
+            <div class="relative text-center md:text-left">
+                <div class="step-number mx-auto md:mx-0 mb-5 shadow-inner">03</div>
+                <div class="font-semibold text-xl mb-2">Seamless Onboarding</div>
+                <div class="text-slate-600 text-sm leading-snug">Fast credentialing, thorough orientation support, and a dedicated partner who ensures day-one success.</div>
+            </div>
+            
+            <div class="relative text-center md:text-left">
+                <div class="step-number mx-auto md:mx-0 mb-5 shadow-inner">04</div>
+                <div class="font-semibold text-xl mb-2">Ongoing Partnership</div>
+                <div class="text-slate-600 text-sm leading-snug">Regular check-ins, proactive problem-solving, performance reviews, and continuous improvement together.</div>
+            </div>
+        </div>
+        
+        <div class="mt-10 text-center">
+            <div class="inline-flex items-center gap-x-2 text-xs px-4 py-2 bg-slate-100 rounded-3xl text-slate-500">
+                <i class="fa-solid fa-sync fa-spin-pulse"></i>
+                <span>Average time from discovery to first shift: <span class="font-semibold text-slate-700">11 days</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- IMPACT -->
+    <div class="max-w-5xl mx-auto px-6 py-16">
+        <div class="text-center mb-10">
+            <div class="text-xs font-mono tracking-[2px] text-emerald-600 mb-1">THE RESULTS WE’RE BUILDING TOWARD</div>
+            <h2 class="section-header tracking-tighter">When clinicians stay, care gets better.</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+            <div class="glass rounded-3xl p-6 text-center border border-slate-100">
+                <div class="text-6xl font-bold tracking-tighter text-emerald-600 metric-value">90%+</div>
+                <div class="font-semibold mt-2">Target Retention</div>
+                <div class="text-xs text-slate-500 mt-1">12-month clinician retention</div>
+            </div>
+            <div class="glass rounded-3xl p-6 text-center border border-slate-100">
+                <div class="text-6xl font-bold tracking-tighter text-emerald-600 metric-value">4.9</div>
+                <div class="font-semibold mt-2">Provider NPS</div>
+                <div class="text-xs text-slate-500 mt-1">Clinician satisfaction goal</div>
+            </div>
+            <div class="glass rounded-3xl p-6 text-center border border-slate-100">
+                <div class="text-6xl font-bold tracking-tighter text-emerald-600 metric-value">65%</div>
+                <div class="font-semibold mt-2">Reduction in Turnover</div>
+                <div class="text-xs text-slate-500 mt-1">Compared to traditional staffing</div>
+            </div>
+            <div class="glass rounded-3xl p-6 text-center border border-slate-100">
+                <div class="text-6xl font-bold tracking-tighter text-emerald-600 metric-value">98%</div>
+                <div class="font-semibold mt-2">Fill Rate</div>
+                <div class="text-xs text-slate-500 mt-1">Shifts covered on time</div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8 text-xs text-slate-400 max-w-xs mx-auto">Numbers reflect our internal targets and early partner feedback. We believe in radical transparency.</div>
+    </div>
+
+    <!-- JOIN / CTA -->
+    <div id="join" class="bg-slate-900 py-16 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="max-w-md mx-auto">
+                <h2 class="text-4xl font-bold tracking-tighter mb-3">Ready to build something better?</h2>
+                <p class="text-slate-400 text-lg">Whether you're a clinician looking for stability or a facility leader ready for a true partner — we're here.</p>
+            </div>
+            
+            <div class="mt-10 grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                <!-- Clinician Form -->
+                <div class="glass rounded-3xl p-8 text-left border border-slate-700 bg-white/5 backdrop-blur-xl">
+                    <div class="uppercase text-xs tracking-[1.5px] text-emerald-400 mb-3 font-semibold">FOR CLINICIANS</div>
+                    <div class="font-semibold text-2xl tracking-tight text-white mb-6">Start your journey</div>
+                    
+                    <form id="clinician-form" onsubmit="submitForm(event, 'clinician')">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs text-slate-400 block mb-1.5">FULL NAME</label>
+                                <input type="text" required class="w-full bg-white/10 border border-slate-600 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D4FF]">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1.5">EMAIL</label>
+                                    <input type="email" required class="w-full bg-white/10 border border-slate-600 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D4FF]">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1.5">ROLE / CREDENTIAL</label>
+                                    <input type="text" required placeholder="RN, PT, PharmD..." class="w-full bg-white/10 border border-slate-600 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D4FF]">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400 block mb-1.5">WHY ARE YOU INTERESTED?</label>
+                                <textarea rows="3" class="w-full bg-white/10 border border-slate-600 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D4FF]" placeholder="Looking for stability, growth, better support..."></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="mt-5 w-full py-3.5 rounded-3xl bg-white text-slate-900 font-semibold text-sm flex items-center justify-center gap-x-2 hover:bg-white/90 transition-colors">
+                            <span>SUBMIT APPLICATION</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Facility Form -->
+                <div class="glass rounded-3xl p-8 text-left border border-slate-700 bg-white/5 backdrop-blur-xl">
+                    <div class="uppercase text-xs tracking-[1.5px] text-violet-400 mb-3 font-semibold">FOR FACILITIES</div>
+                    <div class="font-semibold text-2xl tracking-tight text-white mb-6">Start a partnership</div>
+                    
+                    <form id="facility-form" onsubmit="submitForm(event, 'facility')">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs text-slate-400 block mb-1.5">FACILITY / ORGANIZATION</label>
+                                <input type="text" required class="w-full bg-white/10 border border-slate-600 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D4FF]">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1.5">YOUR NAME</label>
+                                    <input type="text" required class="w-full bg-white/10 border border-slate-600 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D4FF]">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-slate-400 block mb-1.5">ROLE</label>
+                                    <input type="text" required placeholder="CNO, Talent Acquisition..." class="w-full bg-white/10 border border-slate-600 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D4FF]">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400 block mb-1.5">WHAT CHALLENGE ARE YOU FACING?</label>
+                                <textarea rows="3" class="w-full bg-white/10 border border-slate-600 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D4FF]" placeholder="High turnover, inconsistent coverage, onboarding delays..."></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="mt-5 w-full py-3.5 rounded-3xl bg-gradient-to-r from-violet-500 to-purple-600 text-white font-semibold text-sm flex items-center justify-center gap-x-2 hover:brightness-105 transition-all">
+                            <span>REQUEST A DISCOVERY CALL</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="text-[10px] text-slate-500 mt-8">We respond within 24 hours. Early access partners receive priority matching.</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 bg-white py-9 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-y-4">
+            <div class="flex items-center gap-x-5">
+                <div>© 2026 Dryvn Health LLC</div>
+                <div class="hidden md:block">•</div>
+                <div class="flex items-center gap-x-4">
+                    <a href="#" class="hover:text-slate-600 transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-slate-600 transition-colors">Terms</a>
+                    <a href="#" class="hover:text-slate-600 transition-colors">Compliance</a>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-x-4 text-xs">
+                <div class="flex items-center gap-x-1">
+                    <i class="fa-brands fa-linkedin text-base"></i>
+                    <span class="hidden sm:inline">LinkedIn</span>
+                </div>
+                <div class="text-slate-300">•</div>
+                <div>hello@dryvnhealth.com</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#00D4FF');
+        }
+        
+        // Smooth scroll for nav links
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        const navHeight = 72;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Active nav on scroll
+        function setupActiveNav() {
+            const sections = ['mission', 'clinicians', 'facilities', 'how'];
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const scrollY = window.pageYOffset + 120;
+                
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section && section.offsetTop <= scrollY) {
+                        current = sectionId;
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active', 'nav-active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active', 'nav-active');
+                    }
+                });
+            });
+            
+            // Set initial active
+            setTimeout(() => {
+                const firstLink = document.querySelector('.nav-link');
+                if (firstLink) firstLink.classList.add('nav-active');
+            }, 100);
+        }
+        
+        // Parallax for floating elements (subtle)
+        function setupParallax() {
+            const container = document.getElementById('parallax-container');
+            if (!container) return;
+            
+            window.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 12;
+                
+                container.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            
+            // Reset on mouse leave
+            container.addEventListener('mouseleave', () => {
+                container.style.transition = 'transform 1.2s ease';
+                container.style.transform = 'translate(0, 0)';
+                setTimeout(() => {
+                    container.style.transition = '';
+                }, 1200);
+            });
+        }
+        
+        // Form submission handler
+        function submitForm(e, type) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const originalText = form.querySelector('button').innerHTML;
+            
+            form.querySelector('button').innerHTML = `
+                <span class="flex items-center justify-center gap-x-2">
+                    <i class="fa-solid fa-check"></i> 
+                    <span>Submitted! We'll be in touch soon.</span>
+                </span>
+            `;
+            form.querySelector('button').disabled = true;
+            
+            // Simulate processing
+            setTimeout(() => {
+                form.reset();
+                form.querySelector('button').innerHTML = originalText;
+                form.querySelector('button').disabled = false;
+                
+                // Show success toast
+                showToast(type);
+            }, 1650);
+        }
+        
+        function showToast(type) {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 rounded-3xl shadow-xl flex items-center gap-x-3 text-sm z-[100] ${type === 'clinician' ? 'bg-emerald-600 text-white' : 'bg-violet-600 text-white'}`;
+            
+            toast.innerHTML = `
+                <i class="fa-solid fa-check-circle fa-lg"></i>
+                <div>
+                    <div class="font-semibold">Thank you!</div>
+                    <div class="text-xs opacity-80">We've received your message and will reach out within 24 hours.</div>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transition = 'all 0.4s ease';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 20px)';
+                setTimeout(() => toast.remove(), 400);
+            }, 4200);
+        }
+        
+        // Mobile menu
+        function setupMobileMenu() {
+            const btn = document.getElementById('mobile-menu-btn');
+            if (!btn) return;
+            
+            btn.addEventListener('click', () => {
+                const nav = document.querySelector('nav');
+                const mobileMenu = document.createElement('div');
+                mobileMenu.className = 'fixed inset-0 bg-black/60 z-[90] md:hidden';
+                mobileMenu.innerHTML = `
+                    <div class="bg-white w-4/5 max-w-xs h-full p-6 shadow-2xl">
+                        <div class="flex justify-between items-center mb-8">
+                            <div class="flex items-center gap-x-2">
+                                <div class="w-8 h-8">
+                                    <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 58 Q48 18 82 46 Q102 68 76 88" stroke="#0F172A" stroke-width="11" stroke-linecap="round" fill="none"/>
+                                        <circle cx="50" cy="26" r="5" fill="#94A3B8"/>
+                                        <circle cx="80" cy="40" r="9" fill="#0F172A"/>
+                                    </svg>
+                                </div>
+                                <span class="font-semibold text-xl tracking-tight">DRYVN</span>
+                            </div>
+                            <button class="text-2xl text-slate-400">×</button>
+                        </div>
+                        
+                        <div class="flex flex-col gap-y-1 text-lg">
+                            <a href="#mission" class="py-3 px-4 hover:bg-slate-100 rounded-2xl">Mission</a>
+                            <a href="#clinicians" class="py-3 px-4 hover:bg-slate-100 rounded-2xl">For Clinicians</a>
+                            <a href="#facilities" class="py-3 px-4 hover:bg-slate-100 rounded-2xl">For Facilities</a>
+                            <a href="#how" class="py-3 px-4 hover:bg-slate-100 rounded-2xl">How It Works</a>
+                        </div>
+                        
+                        <div class="mt-auto pt-8 border-t border-slate-200">
+                            <button onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'}); this.closest('.fixed').remove();" 
+                                    class="w-full py-3.5 bg-slate-900 text-white rounded-3xl font-semibold text-sm">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(mobileMenu);
+                
+                // Close on click outside or X
+                mobileMenu.addEventListener('click', (e) => {
+                    if (e.target === mobileMenu || e.target.textContent === '×') {
+                        mobileMenu.remove();
+                    }
+                });
+                
+                // Close on nav link click
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        setTimeout(() => mobileMenu.remove(), 300);
+                    });
+                });
+            });
+        }
+        
+        // Keyboard escape for any modals (future proof)
+        function setupKeyboardControls() {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const modals = document.querySelectorAll('.fixed.inset-0');
+                    if (modals.length) modals[modals.length - 1].remove();
+                }
+            });
+        }
+        
+        // Initialize everything
+        function initialize() {
+            initializeTailwind();
+            setupSmoothScroll();
+            setupActiveNav();
+            setupParallax();
+            setupMobileMenu();
+            setupKeyboardControls();
+            
+            // Easter egg: console message
+            console.log('%c[DRYVN] E10 • Premium healthcare staffing landing page initialized. Built with care.', 'color:#64748B; font-size:9px');
+            
+            // Optional: subtle hero animation on load
+            setTimeout(() => {
+                const hero = document.getElementById('hero');
+                if (hero) hero.style.transition = 'box-shadow 1.5s ease';
+            }, 800);
+        }
+        
+        // Boot
+        window.onload = initialize;
+    </script>
+</body>
+</html>
